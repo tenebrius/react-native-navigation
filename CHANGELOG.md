@@ -1,5 +1,11 @@
 # Changelog
 
+## v2.2.1
+### Fixed
+#### iOS
+* Fix title.font when subtitle supplied - Font wasn't applied on title, when subtitel was provided. [#14a5b74](https://github.com/wix/react-native-navigation/commit/14a5b748fa461a9c4bd50ca0148a0e13a8ae6fba)
+* Fix invisible modals edge case. When an Overlay was displayed before setRoot was called, Consecutive Modals and Overlays were attached to the wrong window. [#b40f8ed](https://github.com/wix/react-native-navigation/commit/b40f8eda6eea09c465b9cf0e29269fef6238dae0)
+
 ## v2.2.0
 
 ### Added
