@@ -127,9 +127,7 @@ function updatePackageJsonGit(version) {
     writePackageJson(packageJson);
     exec.execSync(`git add package.json`);
     exec.execSync(`git commit -m"Update package.json version to ${version} [ci skip]"`);
-    const remoteUrl = new RegExp(`https?://(\\S+)`).exec(exec.execSyncRead(`git remote -v`))[1];
-    exec.execSyncSilent(`git remote set-url origin "https://${process.env.GIT_USER}:${process.env.GIT_TOKEN}@${remoteUrl}"`);
-    exec.execSync(`git push origin master`);
+    exec.execSync(`git push deploy master`);
 }
 
 run();
