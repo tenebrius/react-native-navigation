@@ -121,6 +121,7 @@ function readPackageJson() {
 }
 
 function updatePackageJsonGit(version) {
+    exec.execSync(`git checkout master`);
     const packageJson = readPackageJson();
     packageJson.version = version;
     writePackageJson(packageJson);
