@@ -1,5 +1,16 @@
 # Changelog
 
+## v2.3.0
+### Added
+#### Android
+* Add `layout.componentBackgroundColor` option - This option is used to set background color only for component layouts. [#cb48065](https://github.com/wix/react-native-navigation/commit/cb48065aaffa0449f1cd57b27bd3de6bb5a0eac8) by [guyca](https://github.com/guyca)
+
+### Fixed
+* SetStackRoot now accepts an array of children which will replace the current children. [#2365e02](https://github.com/wix/react-native-navigation/commit/2365e0211b51a2353949c22a836340eb32cd8cc0) by [guyca](https://github.com/guyca)
+
+#### Android
+* Avoid unnecessary BottomTabs view creation. [#b84a3e5](https://github.com/wix/react-native-navigation/commit/b84a3e5fadcbef93a8ef683550743dc84ac8a2fa) by [guyca](https://github.com/guyca)
+
 ## v2.2.5
 ### Added
 * Add typed interface to constants [#a71e731](https://github.com/wix/react-native-navigation/commit/a71e7311e270d2feb793c7c61b8e637afe98591e) by [pie6k](https://github.com/pie6k)
