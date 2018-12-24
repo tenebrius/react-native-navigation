@@ -4,6 +4,8 @@ import { LayoutType } from './LayoutType';
 import { LayoutTreeCrawler, LayoutNode } from './LayoutTreeCrawler';
 import { UniqueIdProvider } from '../adapters/UniqueIdProvider.mock';
 import { Store } from '../components/Store';
+import { mock, instance } from 'ts-mockito';
+import { OptionsProcessor } from './OptionsProcessor';
 
 describe('LayoutTreeCrawler', () => {
   let uut: LayoutTreeCrawler;
@@ -11,7 +13,9 @@ describe('LayoutTreeCrawler', () => {
 
   beforeEach(() => {
     store = new Store();
-    uut = new LayoutTreeCrawler(new UniqueIdProvider(), store);
+    const mockedOptionsProcessor = mock(OptionsProcessor);
+    const optionsProcessor = instance(mockedOptionsProcessor);
+    uut = new LayoutTreeCrawler(new UniqueIdProvider(), store, optionsProcessor);
   });
 
   it('crawls a layout tree and adds unique id to each node', () => {
@@ -200,88 +204,6 @@ describe('LayoutTreeCrawler', () => {
     };
     uut.crawl(node);
     expect(node.data.passProps).toBeUndefined();
-  });
-
-  describe('navigation options', () => {
-    let options: Record<string, any>;
-    let node: LayoutNode;
-
-    beforeEach(() => {
-      options = {};
-      node = { type: LayoutType.Component, data: { name: 'theComponentName', options }, children: [] };
-    });
-
-    it('processes colors into numeric AARRGGBB', () => {
-      options.someKeyColor = 'red';
-      uut.crawl(node);
-      expect(node.data.options.someKeyColor).toEqual(0xffff0000);
-    });
-
-    it('processes colors into numeric AARRGGBB', () => {
-      options.someKeyColor = 'yellow';
-      uut.crawl(node);
-      expect(node.data.options.someKeyColor).toEqual(0xffffff00);
-    });
-
-    it('processes numeric colors', () => {
-      options.someKeyColor = '#123456';
-      uut.crawl(node);
-      expect(node.data.options.someKeyColor).toEqual(0xff123456);
-    });
-
-    it('processes numeric colors with rrggbbAA', () => {
-      options.someKeyColor = 0x123456ff; // wut
-      uut.crawl(node);
-      expect(node.data.options.someKeyColor).toEqual(0xff123456);
-    });
-
-    it('process colors with rgb functions', () => {
-      options.someKeyColor = 'rgb(255, 0, 255)';
-      uut.crawl(node);
-      expect(node.data.options.someKeyColor).toEqual(0xffff00ff);
-    });
-
-    it('process colors with special words', () => {
-      options.someKeyColor = 'fuchsia';
-      uut.crawl(node);
-      expect(node.data.options.someKeyColor).toEqual(0xffff00ff);
-    });
-
-    it('process colors with hsla functions', () => {
-      options.someKeyColor = 'hsla(360, 100%, 100%, 1.0)';
-      uut.crawl(node);
-      expect(node.data.options.someKeyColor).toEqual(0xffffffff);
-    });
-
-    it('unknown colors return undefined', () => {
-      options.someKeyColor = 'wut';
-      uut.crawl(node);
-      expect(node.data.options.someKeyColor).toEqual(undefined);
-    });
-
-    it('any keys ending with Color', () => {
-      options.otherKeyColor = 'red';
-      options.yetAnotherColor = 'blue';
-      options.andAnotherColor = 'rgb(0, 255, 0)';
-      uut.crawl(node);
-      expect(node.data.options.otherKeyColor).toEqual(0xffff0000);
-      expect(node.data.options.yetAnotherColor).toEqual(0xff0000ff);
-      expect(node.data.options.andAnotherColor).toEqual(0xff00ff00);
-    });
-
-    it('keys ending with Color case sensitive', () => {
-      options.otherKey_color = 'red'; // eslint-disable-line camelcase
-      uut.crawl(node);
-      expect(node.data.options.otherKey_color).toEqual('red');
-    });
-
-    it('any nested recursive keys ending with Color', () => {
-      options.innerObj = { theKeyColor: 'red' };
-      options.innerObj.innerMostObj = { anotherColor: 'yellow' };
-      uut.crawl(node);
-      expect(node.data.options.innerObj.theKeyColor).toEqual(0xffff0000);
-      expect(node.data.options.innerObj.innerMostObj.anotherColor).toEqual(0xffffff00);
-    });
   });
 
   describe('LayoutNode', () => {
