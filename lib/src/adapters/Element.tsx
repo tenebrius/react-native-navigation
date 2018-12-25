@@ -4,7 +4,7 @@ import { requireNativeComponent } from 'react-native';
 
 let RNNElement: React.ComponentType<any>;
 
-export class Element extends React.Component<{ elementId: any; resizeMode?: any; }, any> {
+export class Element extends React.Component<{ elementId: any; resizeMode?: any }> {
   static propTypes = {
     elementId: PropTypes.string.isRequired,
     resizeMode: PropTypes.string
@@ -15,18 +15,12 @@ export class Element extends React.Component<{ elementId: any; resizeMode?: any;
   };
 
   render() {
-    return (
-      <RNNElement {...this.props} />
-    );
+    return <RNNElement {...this.props} />;
   }
 }
 
-RNNElement = requireNativeComponent(
-  'RNNElement',
-  Element,
-  {
-    nativeOnly: {
-      nativeID: true
-    }
+RNNElement = requireNativeComponent('RNNElement', Element, {
+  nativeOnly: {
+    nativeID: true
   }
-);
+});

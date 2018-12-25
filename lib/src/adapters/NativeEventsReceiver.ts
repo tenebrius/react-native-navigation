@@ -12,8 +12,10 @@ import {
 import { CommandCompletedEvent, BottomTabSelectedEvent } from '../interfaces/Events';
 
 export class NativeEventsReceiver {
-  private emitter;
+  private emitter: { addListener(event: string, callback: any): EventSubscription };
   constructor() {
+    // NOTE: This try catch is workaround for integration tests
+    // TODO: mock NativeEventEmitter in integration tests rather done adding try catch in source code
     try {
       this.emitter = new NativeEventEmitter(NativeModules.RNNEventEmitter);
     } catch (e) {
