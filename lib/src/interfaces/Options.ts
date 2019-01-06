@@ -82,6 +82,13 @@ export enum OptionsModalPresentationStyle {
   none = 'none'
 }
 
+export enum OptionsModalTransitionStyle {
+  coverVertical = 'coverVertical',
+  crossDissolve = 'crossDissolve',
+  flipHorizontal = 'flipHorizontal',
+  partialCurl = 'partialCurl'
+}
+
 export interface OptionsTopBarLargeTitle {
   /**
    * Enable large titles
@@ -253,6 +260,10 @@ export interface OptionsTopBarButton {
    * Set the button text
    */
   text?: string;
+  /**
+   * Set the button font family
+   */
+  fontFamily?: string;
   /**
    * Set the button enabled or disabled
    * @default true
@@ -756,6 +767,12 @@ export interface Options {
    * Configure the presentation style of the modal
    */
   modalPresentationStyle?: OptionsModalPresentationStyle;
+  /**
+   * Configure the transition style of the modal
+   *
+   * #### (Android specific)
+   */
+  modalTransitionStyle?: OptionsModalTransitionStyle;
   /**
    * Configure the top bar
    */
