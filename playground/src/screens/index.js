@@ -29,7 +29,7 @@ const KeyboardScreen = require('./KeyboardScreen');
 const BottomTabSideMenuScreen = require('./complexlayouts/BottomTabSideMenuScreen');
 const FlatListScreen = require('./FlatListScreen');
 const ContextScreen = require('./ContextScreen');
-const { TitleContext } = require('../context');
+const { ContextProvider } = require('../context');
 
 function registerScreens() {
   Navigation.registerComponent(`navigation.playground.CustomTransitionDestination`, () => CustomTransitionDestination);
@@ -40,12 +40,12 @@ function registerScreens() {
   Navigation.registerComponent(`navigation.playground.LifecycleScreen`, () => LifecycleScreen);
   Navigation.registerComponent(`navigation.playground.StaticLifecycleOverlay`, () => StaticLifecycleOverlay);
   Navigation.registerComponent(`navigation.playground.TextScreen`, () => TextScreen);
-  Navigation.registerComponent(`navigation.playground.PushedScreen`, () => PushedScreen);
-  Navigation.registerComponent('navigation.playground.ContextScreen', () => (props) => (
-    <TitleContext.Provider value={'Title from Provider'}>
+  Navigation.registerComponent('navigation.playground.PushedScreen', () => PushedScreen);
+  Navigation.registerComponent('navigation.playground.ContextScreen',() => (props) =>
+    <ContextProvider>
       <ContextScreen {...props} />
-    </TitleContext.Provider>
-  ), () => ContextScreen);
+    </ContextProvider>,
+    () => ContextScreen);
   Navigation.registerComponent(`navigation.playground.OptionsScreen`, () => OptionsScreen);
   Navigation.registerComponent(`navigation.playground.OrientationSelectScreen`, () => OrientationSelectScreen);
   Navigation.registerComponent(`navigation.playground.OrientationDetectScreen`, () => OrientationDetectScreen);
