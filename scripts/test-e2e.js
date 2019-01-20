@@ -20,7 +20,7 @@ function run() {
     
     if (platform === 'android') {
         const sdkmanager = '/usr/local/share/android-sdk/tools/bin/sdkmanager';
-        exec.execSync(`y | ${sdkmanager} --update && y | ${sdkmanager} --licenses`);
+        exec.execSync(`echo y | ${sdkmanager} --update && echo y | ${sdkmanager} --licenses`);
     }
 
     if (!skipBuild) {
