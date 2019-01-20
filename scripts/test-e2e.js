@@ -18,7 +18,7 @@ function run() {
     const headless$ = android ? headless ? `--headless` : `` : ``;
     const workers = multi ? 3 : 1;
     
-    if (platform === 'android') {
+    if (platform === 'android' && process.env.CI) {
         const sdkmanager = '/usr/local/share/android-sdk/tools/bin/sdkmanager';
         exec.execSync(`echo y | ${sdkmanager} --update && echo y | ${sdkmanager} --licenses`);
     }
