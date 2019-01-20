@@ -19,7 +19,7 @@ function run() {
     const workers = multi ? 3 : 1;
     
     if (platform === 'android') {
-        exec.execSync('yes | sdkmanager --licenses');
+        exec.execSync(`yes | /usr/local/share/android-sdk/tools/bin/sdkmanager --licenses`);
     }
 
     if (!skipBuild) {
