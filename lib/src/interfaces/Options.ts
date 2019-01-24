@@ -821,6 +821,10 @@ export interface Options {
    */
   sideMenu?: OptionsSideMenu;
   /**
+   * Configure the splitView controller
+   */
+  splitView?: OptionsSplitView;
+  /**
    * Configure the overlay
    */
   overlay?: OptionsOverlay;
