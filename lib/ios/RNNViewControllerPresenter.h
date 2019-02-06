@@ -1,10 +1,13 @@
 #import "RNNBasePresenter.h"
 #import "RNNNavigationButtons.h"
+#import "RNNReactComponentManager.h"
 
 @interface RNNViewControllerPresenter : RNNBasePresenter
 
-@property (nonatomic, strong) RNNNavigationButtons* navigationButtons;
+- (instancetype)initWithComponentManager:(RNNReactComponentManager *)componentManager;
 
-- (void)bindViewController:(UIViewController *)bindedViewController viewCreator:(id<RNNRootViewCreator>)creator;
+- (void)renderComponents:(RNNNavigationOptions *)options perform:(RNNReactViewReadyCompletionBlock)readyBlock;
+
+@property (nonatomic, strong) RNNNavigationButtons* navigationButtons;
 
 @end
