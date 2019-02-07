@@ -105,7 +105,7 @@
 			}
 		}];
 	}];
-	reactView.backgroundColor = [UIColor clearColor];
+
 	self.view = reactView;
 	
 	if (!wait && readyBlock) {
@@ -115,10 +115,6 @@
 }
 
 - (UIViewController *)getCurrentChild {
-	return self;
-}
-
-- (UIViewController<RNNLeafProtocol> *)getCurrentLeaf {
 	return self;
 }
 

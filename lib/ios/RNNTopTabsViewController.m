@@ -46,7 +46,7 @@
 }
 
 - (RNNNavigationOptions *)resolveOptions {
-	return [(RNNNavigationOptions *)[self.getCurrentChild.resolveOptions.copy mergeOptions:self.options] withDefault:self.defaultOptions];
+	return [(RNNNavigationOptions *)[self.options mergeInOptions:self.getCurrentChild.resolveOptions.copy] withDefault:self.defaultOptions];
 }
 
 - (void)mergeOptions:(RNNNavigationOptions *)options {
@@ -130,10 +130,6 @@
 
 - (UIViewController *)getCurrentChild {
 	return _currentViewController;
-}
-
-- (UIViewController<RNNLeafProtocol> *)getCurrentLeaf {
-	return [[self getCurrentChild] getCurrentLeaf];
 }
 
 @end
