@@ -726,16 +726,20 @@ export interface OptionsAnimationSeparate {
   /**
    * Wait for the View to render before start animation
    * Example:
-```js
-animations: {
-  push: {
-    waitForRender: true
-  },
-  showModal: {
-    waitForRender: true
-  }
-}
-```
+   ```js
+   animations: {
+     push: {
+       waitForRender: true
+     },
+     showModal: {
+       waitForRender: true
+     },
+     setRoot: {
+       waitForRender: true
+     }
+     }
+   }
+   ```
    */
   waitForRender?: boolean;
   /**
