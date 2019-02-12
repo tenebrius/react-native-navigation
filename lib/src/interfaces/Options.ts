@@ -694,6 +694,10 @@ export interface OptionsAnimationProperties {
    * Animate the element over rotation
    */
   rotation?: OptionsAnimationPropertyConfig;
+  /**
+   * Wait for the root view to render before start animation
+   */
+  waitForRender?: boolean;
 }
 
 export interface IconInsets {
