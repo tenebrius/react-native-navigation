@@ -5,14 +5,14 @@
 
 ### Fixed
 #### iOS
-* Fixes initial screen size [#](https://github.com/wix/react-native-navigation/commit/e03674381315f92292add444055aeaba791076d3) by [yogevbd](https://github.com/yogevbd)
+* Fixes initial screen size [#e036743](https://github.com/wix/react-native-navigation/commit/e03674381315f92292add444055aeaba791076d3) by [yogevbd](https://github.com/yogevbd)
 * Fix top bar buttons size on iOS 10 [#8282d93](https://github.com/wix/react-native-navigation/commit/8282d934f70d512548d6d4ceae25e9798d591141) by [yogevbd](https://github.com/yogevbd)
 * Prevent keyboard from hiding when overlay is shown [#aba58b6](https://github.com/wix/react-native-navigation/commit/aba58b6c5aa4b39a0fb76fa2f8ebbd28dc80952e) by [tomhicks](https://github.com/tomhicks)
 
 #### Android
 * Fix loading local images [#c82bc57](https://github.com/wix/react-native-navigation/commit/c82bc57d58227f8ecb54e7cf351da46b38b4f8f9) by [guyca](https://github.com/guyca)
 * Update side menu options on open / close callback  [#43f05ee](https://github.com/wix/react-native-navigation/commit/43f05ee01574c18d216acfb510be4b5e38165e4d) by [gosuperninja](https://github.com/gosuperninja)
-* Fix overflow visible for react button components in TopBa [#54ff1cd](https://github.com/wix/react-native-navigation/commit/54ff1cd049b7a418f7fd2658f569d06853bcea6c) by [guyca](https://github.com/guyca)
+* Fix overflow visible for react button components in TopBar [#54ff1cd](https://github.com/wix/react-native-navigation/commit/54ff1cd049b7a418f7fd2658f569d06853bcea6c) by [guyca](https://github.com/guyca)
 
 ## 2.12.0
 ### Added
