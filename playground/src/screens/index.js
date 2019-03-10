@@ -16,7 +16,7 @@ const Screens = require('./Screens');
 function registerScreens() {
   Navigation.registerComponent(Screens.Layouts, () => require('./LayoutsScreen'));
   Navigation.registerComponent(Screens.Options, () => require('./OptionsScreen'));
-  Navigation.registerComponent(Screens.StackScreen, () => require('./StackScreen'));
+  Navigation.registerComponent(Screens.Stack, () => require('./StackScreen'));
   Navigation.registerComponent(Screens.Pushed, () => require('./PushedScreen'));
   Navigation.registerComponent(Screens.Modal, () => require('./ModalScreen'))
   Navigation.registerComponent(Screens.Navigation, () => require('./NavigationScreen'));
