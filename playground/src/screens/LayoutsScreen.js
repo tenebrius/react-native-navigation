@@ -68,38 +68,6 @@ class LayoutsScreen extends React.Component {
     }
   });
 
-  onClickShowPreview = async ({reactTag}) => {
-    await Navigation.push(this.props.componentId, {
-      component: {
-        name: 'navigation.playground.PushedScreen',
-        options: {
-          animations: {
-            push: {
-              enabled: false
-            }
-          },
-          preview: reactTag ? {
-            reactTag,
-            height: 300,
-            commit: true,
-            actions: [{
-              id: 'action-cancel',
-              title: 'Cancel'
-            }, {
-              id: 'action-delete',
-              title: 'Delete',
-              actions: [{
-                id: 'action-delete-sure',
-                title: 'Are you sure?',
-                style: 'destructive'
-              }]
-            }]
-          } : undefined,
-        }
-      }
-    });
-  }
-
   onClickSplitView = () => {
     Navigation.setRoot({
       root: {
