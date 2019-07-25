@@ -1,4 +1,22 @@
 # Changelog
+# 2.26.1
+
+## Fixed
+### iOS
+* Fix transparent topBar background color transition [#147cf4c](https://github.com/wix/react-native-navigation/commit/147cf4cafca83f0903b68a47d3812009a11d3018) by [yogevbd](https://github.com/yogevbd)
+
+# 2.26.0
+
+## Fixed
+### Android
+* Apply TopBar buttons only if they are different than current buttons [#f15e9b3](https://github.com/wix/react-native-navigation/commit/f15e9b3a2a8c661d10c93d9c2f9a7155de979240) by [guyca](https://github.com/guyca)
+
+# 2.25.0
+
+## Fixed
+### Android
+* Ensure appLaunched event is emitted only when app is resumed [#21584fd](https://github.com/wix/react-native-navigation/commit/21584fd4a525d7a8085caf18d624668cc5865d93) by [guyca](https://github.com/guyca)
+
 # 2.24.0
 ## Added
 * Add return type to Navigation.constants() [#66ab3cd](https://github.com/wix/react-native-navigation/commit/66ab3cd695be68e7d7536fde4c61bad4e7067281) by [danilobuerger](https://github.com/danilobuerger)
