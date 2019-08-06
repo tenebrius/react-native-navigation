@@ -292,6 +292,9 @@
 - (void)testSetStackRoot_callRenderTreeAndWaitOnce {
 	id vc1Mock = OCMPartialMock(_vc1);
 	id vc2Mock = OCMPartialMock(_vc2);
+	OCMStub([vc1Mock renderTreeAndWait:NO perform:[OCMArg any]]);
+	OCMStub([vc2Mock renderTreeAndWait:NO perform:[OCMArg any]]);
+	
 	NSArray* newViewControllers = @[vc1Mock, vc2Mock];
 	id classMock = OCMClassMock([RNNLayoutManager class]);
 	OCMStub(ClassMethod([classMock findComponentForId:@"vc1"])).andReturn(_nvc);
@@ -311,6 +314,7 @@
 	_vc2.options.animations.setStackRoot.waitForRender = [[Bool alloc] initWithBOOL:YES];
 	id vc1Mock = OCMPartialMock(_vc1);
 	id vc2Mock = OCMPartialMock(_vc2);
+	OCMStub([vc1Mock renderTreeAndWait:NO perform:[OCMArg any]]);
 	OCMStub([vc2Mock renderTreeAndWait:YES perform:[OCMArg any]]);
 	NSArray* newViewControllers = @[vc1Mock, vc2Mock];
 	id classMock = OCMClassMock([RNNLayoutManager class]);
