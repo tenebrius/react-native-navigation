@@ -1,21 +1,26 @@
 package com.reactnativenavigation.presentation;
 
 import android.content.Context;
-import android.widget.FrameLayout;
 
 import com.facebook.react.ReactInstanceManager;
 import com.reactnativenavigation.anim.NavigationAnimator;
 import com.reactnativenavigation.parse.Options;
 import com.reactnativenavigation.utils.CommandListener;
 import com.reactnativenavigation.viewcontrollers.ViewController;
+import com.reactnativenavigation.views.BehaviourDelegate;
 import com.reactnativenavigation.views.element.ElementTransitionManager;
+
+import androidx.annotation.VisibleForTesting;
+import androidx.coordinatorlayout.widget.CoordinatorLayout;
+
+import static com.reactnativenavigation.utils.CoordinatorLayoutUtils.matchParentWithBehaviour;
 
 public class RootPresenter {
     private NavigationAnimator animator;
+    private CoordinatorLayout rootLayout;
     private LayoutDirectionApplier layoutDirectionApplier;
-    private FrameLayout rootLayout;
 
-    public void setRootContainer(FrameLayout rootLayout) {
+    public void setRootContainer(CoordinatorLayout rootLayout) {
         this.rootLayout = rootLayout;
     }
 
@@ -23,6 +28,7 @@ public class RootPresenter {
         this(new NavigationAnimator(context, new ElementTransitionManager()), new LayoutDirectionApplier());
     }
 
+    @VisibleForTesting
     public RootPresenter(NavigationAnimator animator, LayoutDirectionApplier layoutDirectionApplier) {
         this.animator = animator;
         this.layoutDirectionApplier = layoutDirectionApplier;
@@ -30,7 +36,7 @@ public class RootPresenter {
 
     public void setRoot(ViewController root, Options defaultOptions, CommandListener listener, ReactInstanceManager reactInstanceManager) {
         layoutDirectionApplier.apply(root, defaultOptions, reactInstanceManager);
-        rootLayout.addView(root.getView());
+        rootLayout.addView(root.getView(), matchParentWithBehaviour(new BehaviourDelegate(root)));
         Options options = root.resolveCurrentOptions(defaultOptions);
         root.setWaitForRender(options.animations.setRoot.waitForRender);
         if (options.animations.setRoot.waitForRender.isTrue()) {

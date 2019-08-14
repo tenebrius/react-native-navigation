@@ -3,13 +3,15 @@ package com.reactnativenavigation.views;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.drawable.Drawable;
-import android.support.annotation.IntRange;
 import android.widget.LinearLayout;
 
 import com.aurelhubert.ahbottomnavigation.AHBottomNavigation;
 import com.aurelhubert.ahbottomnavigation.AHBottomNavigationItem;
+import com.reactnativenavigation.BuildConfig;
+import com.reactnativenavigation.R;
 import com.reactnativenavigation.parse.LayoutDirection;
-import com.reactnativenavigation.utils.CompatUtils;
+
+import androidx.annotation.IntRange;
 
 import static com.reactnativenavigation.utils.ViewUtils.findChildByClass;
 
@@ -18,6 +20,12 @@ public class BottomTabs extends AHBottomNavigation {
     private boolean itemsCreationEnabled = true;
     private boolean shouldCreateItems = true;
 
+    public BottomTabs(Context context) {
+        super(context);
+        setId(R.id.bottomTabs);
+        if (BuildConfig.DEBUG) setContentDescription("BottomTabs");
+    }
+
     public void disableItemsCreation() {
         itemsCreationEnabled = false;
     }
@@ -25,11 +33,6 @@ public class BottomTabs extends AHBottomNavigation {
     public void enableItemsCreation() {
         itemsCreationEnabled = true;
         if (shouldCreateItems) createItems();
-    }
-
-    public BottomTabs(Context context) {
-        super(context);
-        setId(CompatUtils.generateViewId());
     }
 
     @Override
@@ -48,10 +51,6 @@ public class BottomTabs extends AHBottomNavigation {
 
     public void superCreateItems() {
         super.createItems();
-    }
-
-    public void setBadge(int bottomTabIndex, String badge) {
-        setNotification(badge, bottomTabIndex);
     }
 
     @Override

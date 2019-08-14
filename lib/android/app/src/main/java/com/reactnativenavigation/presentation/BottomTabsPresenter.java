@@ -1,9 +1,7 @@
 package com.reactnativenavigation.presentation;
 
 import android.graphics.Color;
-import android.support.annotation.IntRange;
 import android.view.ViewGroup;
-import android.view.ViewGroup.MarginLayoutParams;
 
 import com.aurelhubert.ahbottomnavigation.AHBottomNavigation.TitleState;
 import com.reactnativenavigation.anim.BottomTabsAnimator;
@@ -14,11 +12,10 @@ import com.reactnativenavigation.viewcontrollers.ViewController;
 import com.reactnativenavigation.viewcontrollers.bottomtabs.BottomTabFinder;
 import com.reactnativenavigation.viewcontrollers.bottomtabs.TabSelector;
 import com.reactnativenavigation.views.BottomTabs;
-import com.reactnativenavigation.views.Component;
 
 import java.util.List;
 
-import static com.reactnativenavigation.utils.ViewUtils.getHeight;
+import androidx.annotation.IntRange;
 
 public class BottomTabsPresenter {
     private final BottomTabFinder bottomTabFinder;
@@ -44,11 +41,6 @@ public class BottomTabsPresenter {
         animator = new BottomTabsAnimator(bottomTabs);
     }
 
-    public void applyLayoutParamsOptions(Options options, int tabIndex) {
-        Options withDefaultOptions = options.copy().withDefaultOptions(defaultOptions);
-        applyDrawBehind(withDefaultOptions.bottomTabsOptions, tabIndex);
-    }
-
     public void mergeOptions(Options options) {
         mergeBottomTabsOptions(options);
     }
@@ -57,19 +49,18 @@ public class BottomTabsPresenter {
         applyBottomTabsOptions(options.copy().withDefaultOptions(defaultOptions));
     }
 
-    public void applyChildOptions(Options options, Component child) {
-        int tabIndex = bottomTabFinder.findByComponent(child);
+    public void applyChildOptions(Options options, ViewController child) {
+        int tabIndex = bottomTabFinder.findByControllerId(child.getId());
         if (tabIndex >= 0) {
-            Options withDefaultOptions = options.copy().withDefaultOptions(defaultOptions);
-            applyBottomTabsOptions(withDefaultOptions);
-            applyDrawBehind(withDefaultOptions.bottomTabsOptions, tabIndex);
+            applyBottomTabsOptions(options.copy().withDefaultOptions(defaultOptions));
+            applyDrawBehind(tabIndex);
         }
     }
 
-    public void mergeChildOptions(Options options, Component child) {
+    public void mergeChildOptions(Options options, ViewController child) {
         mergeBottomTabsOptions(options);
-        int tabIndex = bottomTabFinder.findByComponent(child);
-        if (tabIndex >= 0) mergeDrawBehind(options.bottomTabsOptions, tabIndex);
+        int tabIndex = bottomTabFinder.findByControllerId(child.getId());
+        if (tabIndex >= 0) mergeDrawBehind(tabIndex);
     }
 
     private void mergeBottomTabsOptions(Options options) {
@@ -110,24 +101,12 @@ public class BottomTabsPresenter {
         }
     }
 
-    private void applyDrawBehind(BottomTabsOptions options, @IntRange(from = 0) int tabIndex) {
-        ViewGroup tab = tabs.get(tabIndex).getView();
-        MarginLayoutParams lp = (MarginLayoutParams) tab.getLayoutParams();
-        if (options.drawBehind.isTrue()) {
-            lp.bottomMargin = 0;
-        } else if (options.visible.isTrueOrUndefined()) {
-            lp.bottomMargin = getHeight(bottomTabs);
-        }
+    private void applyDrawBehind(@IntRange(from = 0) int tabIndex) {
+        tabs.get(tabIndex).applyBottomInset();
     }
 
-    private void mergeDrawBehind(BottomTabsOptions options, int tabIndex) {
-        ViewGroup tab = tabs.get(tabIndex).getView();
-        MarginLayoutParams lp = (MarginLayoutParams) tab.getLayoutParams();
-        if (options.drawBehind.isTrue()) {
-            lp.bottomMargin = 0;
-        } else if (options.visible.isTrue() && options.drawBehind.isFalse()) {
-            lp.bottomMargin = getHeight(bottomTabs);
-        }
+    private void mergeDrawBehind(int tabIndex) {
+        tabs.get(tabIndex).applyBottomInset();
     }
 
     private void applyBottomTabsOptions(Options options) {
@@ -163,5 +142,11 @@ public class BottomTabsPresenter {
         if (bottomTabsOptions.elevation.hasValue()) {
             bottomTabs.setUseElevation(true, bottomTabsOptions.elevation.get().floatValue());
         }
+    }
+
+    public void applyBottomInset(int bottomInset) {
+        ViewGroup.MarginLayoutParams lp = (ViewGroup.MarginLayoutParams) bottomTabs.getLayoutParams();
+        lp.bottomMargin = bottomInset;
+        bottomTabs.requestLayout();
     }
 }

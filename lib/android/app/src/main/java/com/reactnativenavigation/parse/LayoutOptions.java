@@ -35,7 +35,6 @@ public class LayoutOptions {
         if (other.topMargin.hasValue()) topMargin = other.topMargin;
         if (other.orientation.hasValue()) orientation = other.orientation;
         if (other.direction.hasValue()) direction = other.direction;
-
     }
 
     public void mergeWithDefault(LayoutOptions defaultOptions) {
