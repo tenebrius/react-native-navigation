@@ -74,6 +74,13 @@ describe('Options', () => {
     await expect(elementByLabel('Press Me')).toBeVisible();
   });
 
+  it('set title after setting react component', async () => {
+    await elementById(TestIDs.SET_REACT_TITLE_VIEW).tap();
+    await expect(elementByLabel('Press Me')).toBeVisible();
+    await elementById(TestIDs.SET_TITLE).tap();
+    await expect(elementByLabel('Title')).toBeVisible();
+  });
+
   it('Popping screen with yellow box should not crash', async () => {
     await elementById(TestIDs.SHOW_YELLOW_BOX_BTN).tap();
     await elementById(TestIDs.PUSH_BTN).tap();
