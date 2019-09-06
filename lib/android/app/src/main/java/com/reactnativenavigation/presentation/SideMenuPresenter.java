@@ -29,6 +29,10 @@ public class SideMenuPresenter {
         return false;
     }
 
+    public void applyOptions(Options options) {
+        applyLockMode(options.sideMenuRootOptions);
+    }
+
     public void mergeOptions(SideMenuRootOptions options) {
         mergeLockMode(options);
         mergeVisibility(options);

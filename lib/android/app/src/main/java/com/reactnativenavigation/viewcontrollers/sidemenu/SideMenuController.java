@@ -78,6 +78,12 @@ public class SideMenuController extends ParentController<SideMenuRoot> implement
 	}
 
     @Override
+    public void applyOptions(Options options) {
+        super.applyOptions(options);
+        presenter.applyOptions(options);
+    }
+
+    @Override
     public void applyChildOptions(Options options, ViewController child) {
         super.applyChildOptions(options, child);
         presenter.applyChildOptions(resolveCurrentOptions());
