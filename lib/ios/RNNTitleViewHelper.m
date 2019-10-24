@@ -143,6 +143,7 @@
 	CGRect labelframe = titleLabel.frame;
 	labelframe.size = labelSize;
 	titleLabel.frame = labelframe;
+	[titleLabel sizeToFit];
 	
 	if (!self.subtitle) {
 		titleLabel.center = self.titleView.center;
@@ -153,7 +154,7 @@
 		titleLabel.textColor = color;
 	}
 	
-	[titleLabel sizeToFit];
+	
 	[self.titleView addSubview:titleLabel];
 	
 	return titleLabel;
