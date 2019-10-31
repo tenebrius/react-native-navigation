@@ -118,6 +118,11 @@ Add the following to your application's `style.xml`
       <item name="backgroundColor" type="color">#f00</item>
   </resources>
   ```
+# 2.28.0
+## Added
+* Support updating component props with Navigation.mergeOptions [#291f161](https://github.com/wix/react-native-navigation/commit/291f16177d2f67a474d3a980a503a85d0acf2b2a) by [justtal](https://github.com/justtal)
+### Android
+* Support bottomTab.selectedIcon [#45e8389](https://github.com/wix/react-native-navigation/commit/45e8389b2b7d282878a80c49b146ddeb4ec2cd89) by [guyca](https://github.com/guyca)
 # 2.27.7
 ## Added
 ### iOS
