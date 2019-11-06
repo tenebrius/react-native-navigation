@@ -106,7 +106,7 @@ public class BottomTabPresenterTest extends BaseTest {
         Options options = new Options();
         options.bottomTabOptions.iconColor = new DontApplyColour();
         options.bottomTabOptions.selectedIconColor = new DontApplyColour();
-        uut.mergeChildOptions(options, (Component) child3.getView());
+        uut.mergeChildOptions(options, child3);
         verify(bottomTabs, times(0)).setIconActiveColor(anyInt(), anyInt());
         verify(bottomTabs, times(0)).setIconInactiveColor(anyInt(), anyInt());
     }
