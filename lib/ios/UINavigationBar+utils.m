@@ -29,7 +29,6 @@ const NSInteger TOP_BAR_TRANSPARENT_TAG = 78264803;
 
 - (void)setBackgroundColor:(UIColor *)color {
     if (@available(iOS 13.0, *)) {
-        [self configureWithDefaultBackground];
         [self getNavigaitonBarStandardAppearance].backgroundColor = color;
         [self getNavigaitonBarCompactAppearance].backgroundColor = color;
         [self getNavigaitonBarScrollEdgeAppearance].backgroundColor = color;
@@ -41,7 +40,14 @@ const NSInteger TOP_BAR_TRANSPARENT_TAG = 78264803;
 
 - (void)setBackgroundColorTransparent {
     if (@available(iOS 13.0, *)) {
-        [self configureWithTransparentBackground];
+        UIColor* clearColor = [UIColor clearColor];
+        [self getNavigaitonBarStandardAppearance].backgroundColor = clearColor;
+        [self getNavigaitonBarCompactAppearance].backgroundColor = clearColor;
+        [self getNavigaitonBarScrollEdgeAppearance].backgroundColor = clearColor;
+        [self getNavigaitonBarStandardAppearance].backgroundEffect = nil;
+        [self getNavigaitonBarCompactAppearance].backgroundEffect = nil;
+        [self getNavigaitonBarScrollEdgeAppearance].backgroundEffect = nil;
+        
     } else {
         if (![self viewWithTag:TOP_BAR_TRANSPARENT_TAG]){
             UIView *transparentView = [[UIView alloc] initWithFrame:CGRectZero];
