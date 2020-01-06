@@ -20,7 +20,7 @@ import com.reactnativenavigation.viewcontrollers.ComponentViewController;
 import com.reactnativenavigation.viewcontrollers.ViewController;
 import com.reactnativenavigation.viewcontrollers.bottomtabs.BottomTabsAttacher;
 import com.reactnativenavigation.viewcontrollers.bottomtabs.BottomTabsController;
-import com.reactnativenavigation.viewcontrollers.button.NavigationIconResolver;
+import com.reactnativenavigation.viewcontrollers.button.IconResolver;
 import com.reactnativenavigation.viewcontrollers.externalcomponent.ExternalComponentCreator;
 import com.reactnativenavigation.viewcontrollers.externalcomponent.ExternalComponentViewController;
 import com.reactnativenavigation.viewcontrollers.sidemenu.SideMenuController;
@@ -187,7 +187,7 @@ public class LayoutFactory {
                         new TitleBarReactViewCreator(reactInstanceManager),
                         new TopBarBackgroundViewCreator(reactInstanceManager),
                         new TitleBarButtonCreator(reactInstanceManager),
-                        new NavigationIconResolver(activity, new ImageLoader()),
+                        new IconResolver(activity, new ImageLoader()),
                         new RenderChecker(),
                         defaultOptions
                 ))

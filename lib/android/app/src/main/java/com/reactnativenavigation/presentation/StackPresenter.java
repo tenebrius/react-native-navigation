@@ -29,7 +29,7 @@ import com.reactnativenavigation.viewcontrollers.ReactViewCreator;
 import com.reactnativenavigation.viewcontrollers.TitleBarButtonController;
 import com.reactnativenavigation.viewcontrollers.TitleBarReactViewController;
 import com.reactnativenavigation.viewcontrollers.ViewController;
-import com.reactnativenavigation.viewcontrollers.button.NavigationIconResolver;
+import com.reactnativenavigation.viewcontrollers.button.IconResolver;
 import com.reactnativenavigation.viewcontrollers.stack.StackController;
 import com.reactnativenavigation.viewcontrollers.topbar.TopBarBackgroundViewController;
 import com.reactnativenavigation.viewcontrollers.topbar.TopBarController;
@@ -74,13 +74,13 @@ public class StackPresenter {
     private Map<View, TopBarBackgroundViewController> backgroundControllers = new HashMap();
     private Map<View, Map<String, TitleBarButtonController>> componentRightButtons = new HashMap();
     private Map<View, Map<String, TitleBarButtonController>> componentLeftButtons = new HashMap();
-    private NavigationIconResolver iconResolver;
+    private IconResolver iconResolver;
 
     public StackPresenter(Activity activity,
                           TitleBarReactViewCreator titleViewCreator,
                           TopBarBackgroundViewCreator topBarBackgroundViewCreator,
                           ReactViewCreator buttonCreator,
-                          NavigationIconResolver iconResolver,
+                          IconResolver iconResolver,
                           RenderChecker renderChecker,
                           Options defaultOptions) {
         this.activity = activity;

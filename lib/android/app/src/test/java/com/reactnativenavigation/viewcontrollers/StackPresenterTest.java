@@ -32,7 +32,7 @@ import com.reactnativenavigation.presentation.StackPresenter;
 import com.reactnativenavigation.utils.CommandListenerAdapter;
 import com.reactnativenavigation.utils.TitleBarHelper;
 import com.reactnativenavigation.utils.UiUtils;
-import com.reactnativenavigation.viewcontrollers.button.NavigationIconResolver;
+import com.reactnativenavigation.viewcontrollers.button.IconResolver;
 import com.reactnativenavigation.viewcontrollers.stack.StackController;
 import com.reactnativenavigation.viewcontrollers.topbar.TopBarController;
 import com.reactnativenavigation.views.StackLayout;
@@ -86,7 +86,7 @@ public class StackPresenterTest extends BaseTest {
     private Button componentBtn2 = TitleBarHelper.reactViewButton("btn2_");
     private TopBarController topBarController;
     private ChildControllersRegistry childRegistry;
-    private NavigationIconResolver iconResolver;
+    private IconResolver iconResolver;
 
     @Override
     public void beforeEach() {
@@ -98,7 +98,7 @@ public class StackPresenterTest extends BaseTest {
             }
         };
         renderChecker = spy(new RenderChecker());
-        iconResolver = new NavigationIconResolver(activity, ImageLoaderMock.mock());
+        iconResolver = new IconResolver(activity, ImageLoaderMock.mock());
         uut = spy(new StackPresenter(activity, titleViewCreator, new TopBarBackgroundViewCreatorMock(), new TopBarButtonCreatorMock(), iconResolver, renderChecker, new Options()));
         createTopBarController();
 

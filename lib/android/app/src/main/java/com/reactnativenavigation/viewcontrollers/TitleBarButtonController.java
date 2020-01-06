@@ -19,7 +19,7 @@ import com.reactnativenavigation.utils.ImageLoader;
 import com.reactnativenavigation.utils.ImageLoadingListenerAdapter;
 import com.reactnativenavigation.utils.UiUtils;
 import com.reactnativenavigation.utils.ViewUtils;
-import com.reactnativenavigation.viewcontrollers.button.NavigationIconResolver;
+import com.reactnativenavigation.viewcontrollers.button.IconResolver;
 import com.reactnativenavigation.views.titlebar.TitleBarReactButtonView;
 
 import java.util.List;
@@ -34,7 +34,7 @@ public class TitleBarButtonController extends ViewController<TitleBarReactButton
         void onPress(String buttonId);
     }
 
-    private final NavigationIconResolver navigationIconResolver;
+    private final IconResolver navigationIconResolver;
     private ButtonPresenter optionsPresenter;
     private final Button button;
     private final ReactViewCreator viewCreator;
@@ -51,7 +51,7 @@ public class TitleBarButtonController extends ViewController<TitleBarReactButton
     }
 
     public TitleBarButtonController(Activity activity,
-                                    NavigationIconResolver navigationIconResolver,
+                                    IconResolver navigationIconResolver,
                                     ButtonPresenter optionsPresenter,
                                     Button button,
                                     ReactViewCreator viewCreator,

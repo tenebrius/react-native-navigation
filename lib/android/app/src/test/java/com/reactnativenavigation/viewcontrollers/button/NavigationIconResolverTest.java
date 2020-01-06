@@ -23,7 +23,7 @@ import static org.mockito.Mockito.verify;
 
 public class NavigationIconResolverTest extends BaseTest {
     private static final String ICON_URI = "someIconUri";
-    private NavigationIconResolver uut;
+    private IconResolver uut;
     private ImageLoader imageLoader;
     private Activity context;
 
@@ -31,7 +31,7 @@ public class NavigationIconResolverTest extends BaseTest {
     public void beforeEach() {
         imageLoader = ImageLoaderMock.mock();
         context = newActivity();
-        uut = new NavigationIconResolver(context, imageLoader);
+        uut = new IconResolver(context, imageLoader);
     }
 
     @Test

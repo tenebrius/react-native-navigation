@@ -8,7 +8,7 @@ import com.reactnativenavigation.parse.Component;
 import com.reactnativenavigation.parse.params.Button;
 import com.reactnativenavigation.parse.params.Text;
 import com.reactnativenavigation.viewcontrollers.TitleBarButtonController;
-import com.reactnativenavigation.viewcontrollers.button.NavigationIconResolver;
+import com.reactnativenavigation.viewcontrollers.button.IconResolver;
 import com.reactnativenavigation.views.titlebar.TitleBar;
 
 import androidx.appcompat.view.menu.ActionMenuItemView;
@@ -45,7 +45,7 @@ public class TitleBarHelper {
 
     public static TitleBarButtonController createButtonController(Activity activity, TitleBar titleBar, Button button) {
         return new TitleBarButtonController(activity,
-                new NavigationIconResolver(activity, ImageLoaderMock.mock()),
+                new IconResolver(activity, ImageLoaderMock.mock()),
                 new ButtonPresenter(titleBar, button),
                 button,
                 new TopBarButtonCreatorMock(),

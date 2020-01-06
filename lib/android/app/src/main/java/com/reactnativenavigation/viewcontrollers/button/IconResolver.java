@@ -12,12 +12,12 @@ import com.reactnativenavigation.utils.ImageLoadingListenerAdapter;
 
 import androidx.annotation.NonNull;
 
-public class NavigationIconResolver {
+public class IconResolver {
 
     private Activity context;
     private ImageLoader imageLoader;
 
-    public NavigationIconResolver(Activity context, ImageLoader imageLoader) {
+    public IconResolver(Activity context, ImageLoader imageLoader) {
         this.context = context;
         this.imageLoader = imageLoader;
     }
