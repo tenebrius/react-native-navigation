@@ -1,4 +1,14 @@
 # Changelog
+# 4.5.0
+## Added
+* Improve accessibility support [#07c558c](https://github.com/wix/react-native-navigation/commit/07c558c76f7bf3acd56a2af4e0e901c81ae0e49d), [#f635b5e](https://github.com/wix/react-native-navigation/commit/f635b5e8be81ee99aaf2726c989624b1dafcbf41) by [yogevbd](https://github.com/yogevbd) and [guyca](https://github.com/guyca)
+### iOS
+* Add modalAttemptedToDismiss event [#87af42a](https://github.com/wix/react-native-navigation/commit/87af42a56be7deaa32678afb72846c92e293f524) by [manicantic](https://github.com/manicantic)
+* Add bottomTabLongPressed event on iOS [#c425f83](https://github.com/wix/react-native-navigation/commit/c425f837b1d99a8b27525d52b6eba37fb77cbded) by [N3TC4T](https://github.com/N3TC4T)
+## Fixed
+### Android
+* Emit modalDismissed event before ViewController is destroyed [#cf591d9](https://github.com/wix/react-native-navigation/commit/cf591d9a9c48ed89c7e7fed4594b8dbcb9732bc9) by [guyca](https://github.com/guyca)
+
 # 4.4.0
 ## Added
 ### Android
