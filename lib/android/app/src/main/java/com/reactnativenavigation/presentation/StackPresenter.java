@@ -543,4 +543,8 @@ public class StackPresenter {
         int statusBarInset = withDefault.statusBar.visible.isTrueOrUndefined() ? StatusBarUtils.getStatusBarHeight(child.getActivity()) : 0;
         return topMargin + statusBarInset;
     }
+
+    public int getTopInset(Options resolvedOptions) {
+        return resolvedOptions.withDefaultOptions(defaultOptions).topBar.isHiddenOrDrawBehind() ? 0 : topBarController.getHeight();
+    }
 }

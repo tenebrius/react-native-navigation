@@ -1148,6 +1148,16 @@ public class StackControllerTest extends BaseTest {
         assertThat(uut.getTopInset(child1)).isEqualTo(0);
     }
 
+    @Test
+    public void getTopInset_defaultOptionsAreTakenIntoAccount() {
+        assertThat(uut.getTopInset(child1)).isEqualTo(topBarController.getHeight());
+        Options defaultOptions = new Options();
+        defaultOptions.topBar.drawBehind = new Bool(true);
+        uut.setDefaultOptions(defaultOptions);
+
+        assertThat(uut.getTopInset(child1)).isZero();
+    }
+
     private void assertContainsOnlyId(String... ids) {
         assertThat(uut.size()).isEqualTo(ids.length);
         assertThat(uut.getChildControllers()).extracting((Extractor<ViewController, String>) ViewController::getId).containsOnly(ids);

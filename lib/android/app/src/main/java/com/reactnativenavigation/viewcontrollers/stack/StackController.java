@@ -412,7 +412,7 @@ public class StackController extends ParentController<StackLayout> {
 
     @Override
     public int getTopInset(ViewController child) {
-        return resolveChildOptions(child).topBar.isHiddenOrDrawBehind() ? 0 : topBarController.getHeight();
+        return presenter.getTopInset(resolveChildOptions(child));
     }
 
     @RestrictTo(RestrictTo.Scope.TESTS)
