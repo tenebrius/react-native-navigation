@@ -46,6 +46,14 @@ const slideAnimations = {
         to: 1,
         duration: useSlowOpenScreenAnimations ? SHOW_DURATION : 300
       }
+    },
+    bottomTabs: {
+      enter: {
+
+      },
+      exit: {
+
+      }
     }
   },
   pop: {
