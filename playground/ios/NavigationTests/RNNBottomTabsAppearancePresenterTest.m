@@ -1,13 +1,18 @@
 #import <XCTest/XCTest.h>
 #import <OCMock/OCMock.h>
-#import "BottomTabsAppearancePresenter.h"
+#import "BottomTabsPresenterCreator.h"
+#import "BottomTabPresenterCreator.h"
 #import "UITabBarController+RNNOptions.h"
 #import "RNNBottomTabsController.h"
 #import "RNNComponentViewController.h"
+#import "RNNBottomTabsPresenter.h"
+#import "RNNDotIndicatorPresenter.h"
 
 @interface RNNBottomTabsAppearancePresenterTest : XCTestCase
 
-@property(nonatomic, strong) BottomTabsAppearancePresenter *uut;
+@property(nonatomic, strong) RNNBottomTabsPresenter *uut;
+@property(nonatomic, strong) NSArray<UIViewController *> *children;
+@property(nonatomic, strong) id dotIndicatorPresenter;
 @property(nonatomic, strong) RNNNavigationOptions *options;
 @property(nonatomic, strong) id boundViewController;
 
@@ -17,8 +22,10 @@
 
 - (void)setUp {
     [super setUp];
-    self.uut = [OCMockObject partialMockForObject:[BottomTabsAppearancePresenter new]];
-    self.boundViewController = [OCMockObject partialMockForObject:[RNNBottomTabsController new]];
+	self.children = @[[[RNNComponentViewController alloc] initWithLayoutInfo:nil rootViewCreator:nil eventEmitter:nil presenter:[[RNNComponentPresenter alloc] initWithDefaultOptions:nil] options:nil defaultOptions:nil]];
+	self.dotIndicatorPresenter = [OCMockObject partialMockForObject:[[RNNDotIndicatorPresenter alloc] initWithDefaultOptions:nil]];
+    self.uut = [OCMockObject partialMockForObject:[BottomTabsPresenterCreator createWithDefaultOptions:nil]];
+	self.boundViewController = [OCMockObject partialMockForObject:[[RNNBottomTabsController alloc] initWithLayoutInfo:nil creator:nil options:nil defaultOptions:nil presenter:self.uut bottomTabPresenter:[BottomTabPresenterCreator createWithDefaultOptions:nil children:self.children] dotIndicatorPresenter:self.dotIndicatorPresenter eventEmitter:nil childViewControllers:self.children bottomTabsAttacher:nil]];
     [self.uut bindViewController:self.boundViewController];
     self.options = [[RNNNavigationOptions alloc] initEmptyOptions];
 }
@@ -71,28 +78,6 @@
 	[self.boundViewController verify];
 }
 
-- (void)testViewDidLayoutSubviews_appliesBadgeOnNextRunLoop {
-    id uut = [self uut];
-    [[uut expect] applyDotIndicator];
-    [uut viewDidLayoutSubviews];
-    [[NSRunLoop mainRunLoop] runUntilDate:[NSDate dateWithTimeIntervalSinceNow:0.01]];
-    [uut verify];
-}
-
-- (void)testApplyDotIndicator_callsAppliesBadgeWithEachChild {
-    id uut = [self uut];
-    id child1 = [UIViewController new];
-    id child2 = [UIViewController new];
-
-    [[uut expect] applyDotIndicator:child1];
-    [[uut expect] applyDotIndicator:child2];
-    [[self boundViewController] addChildViewController:child1];
-    [[self boundViewController] addChildViewController:child2];
-
-    [uut applyDotIndicator];
-    [uut verify];
-}
-
 - (void)testBackgroundColor_validColor {
 	UIColor* inputColor = [RCTConvert UIColor:@(0xFFFF0000)];
 	self.options.layout.backgroundColor = [[Color alloc] initWithValue:inputColor];
@@ -103,12 +88,8 @@
 
 - (void)testTabBarBackgroundColor {
 	UIColor* tabBarBackgroundColor = [UIColor redColor];
-	RNNComponentPresenter* vcPresenter = [[RNNComponentPresenter alloc] initWithDefaultOptions:nil];
-	UIViewController* vc = [[RNNComponentViewController alloc] initWithLayoutInfo:nil rootViewCreator:nil eventEmitter:nil presenter:vcPresenter options:nil defaultOptions:nil];
-	
-	[((UITabBarController *)self.boundViewController) setViewControllers:@[vc]];
 	[self.uut setTabBarBackgroundColor:tabBarBackgroundColor];
-	XCTAssertTrue([vc.tabBarItem.standardAppearance.backgroundColor isEqual:tabBarBackgroundColor]);
+	XCTAssertTrue([self.children.lastObject.tabBarItem.standardAppearance.backgroundColor isEqual:tabBarBackgroundColor]);
 }
 
 @end

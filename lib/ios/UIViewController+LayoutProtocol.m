@@ -17,13 +17,13 @@
 	self.defaultOptions = defaultOptions;
 	self.layoutInfo = layoutInfo;
 	self.creator = creator;
-	self.eventEmitter = eventEmitter;
-	if ([self respondsToSelector:@selector(setViewControllers:)]) {
-		[self performSelector:@selector(setViewControllers:) withObject:childViewControllers];
-	}
-	self.presenter = presenter;
+    self.eventEmitter = eventEmitter;
+    self.presenter = presenter;
     [self.presenter bindViewController:self];
-	[self.presenter applyOptionsOnInit:self.resolveOptions];
+    if ([self respondsToSelector:@selector(setViewControllers:)]) {
+        [self performSelector:@selector(setViewControllers:) withObject:childViewControllers];
+    }
+    [self.presenter applyOptionsOnInit:self.resolveOptions];
 
 	return self;
 }
@@ -117,6 +117,17 @@
         return self;
 }
 
+- (UIViewController *)findViewController:(UIViewController *)child {
+    if (self == child) return child;
+    
+    for (UIViewController* childController in self.childViewControllers) {
+        UIViewController* fromChild = [childController findViewController:child];
+        if (fromChild) return childController;
+    }
+    
+    return nil;
+}
+
 - (CGFloat)getTopBarHeight {
     for(UIViewController * child in [self childViewControllers]) {
         CGFloat childTopBarHeight = [child getTopBarHeight];
@@ -140,6 +151,10 @@
 	[self.parentViewController onChildWillAppear];
 }
 
+- (void)onChildAddToParent:(UIViewController *)child options:(RNNNavigationOptions *)options {
+    [self.parentViewController onChildAddToParent:child options:options];
+}
+
 - (void)componentDidAppear {
     [self.presenter componentDidAppear];
     [self.parentViewController componentDidAppear];
@@ -153,6 +168,7 @@
 - (void)willMoveToParentViewController:(UIViewController *)parent {
 	if (parent) {
 		[self.presenter applyOptionsOnWillMoveToParentViewController:self.resolveOptions];
+        [self onChildAddToParent:self options:self.resolveOptions];
 	}
 }
 
