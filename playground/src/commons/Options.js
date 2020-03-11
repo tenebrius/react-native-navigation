@@ -1,13 +1,14 @@
 const { Navigation } = require('react-native-navigation');
 const Colors = require('./Colors');
 const { Dimensions } = require('react-native');
-const height = Math.round(Dimensions.get('window').height) * 0.7;
+const height = Math.round(Dimensions.get('window').height);
 const width = Math.round(Dimensions.get('window').width);
+console.log('guyca', `height: ${height} width: ${width}`);
 const {
   useSlowOpenScreenAnimations,
-  useSlideAnimation: useSlideAnimation
+  useSlideAnimation
 } = require('../flags');
-const SHOW_DURATION = 230 * 3;
+const SHOW_DURATION = 310 * 2.5;
 
 const setDefaultOptions = () => Navigation.setDefaultOptions({
   layout: {
@@ -67,18 +68,26 @@ const slideAnimations = {
 const slowOpenScreenAnimations = {
   showModal: {
     waitForRender: true,
-    y: {
+    translationY: {
       from: height,
       to: 0,
       duration: SHOW_DURATION,
-      interpolation: 'accelerateDecelerate'
+      interpolation: 'decelerate'
     },
     alpha: {
-      from: 0.7,
+      from: 0.65,
       to: 1,
-      duration: SHOW_DURATION,
+      duration: SHOW_DURATION * 0.5,
       interpolation: 'accelerate'
     }
+  },
+  dismissModal: {
+    translationY: {
+      from: 0,
+      to: height,
+      duration: SHOW_DURATION * 0.8,
+    },
+    
   },
   push: {
     waitForRender: true,
@@ -89,8 +98,22 @@ const slowOpenScreenAnimations = {
         duration: SHOW_DURATION,
       },
       translationY: {
-        from: height,
+        from: height * 0.3,
         to: 0,
+        duration: SHOW_DURATION,
+      }
+    }
+  },
+  pop: {
+    content: {
+      alpha: {
+        from: 1,
+        to: 0,
+        duration: SHOW_DURATION,
+      },
+      translationY: {
+        from: 0,
+        to: height * 0.7,
         duration: SHOW_DURATION,
       }
     }
