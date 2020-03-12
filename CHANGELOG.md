@@ -1,4 +1,22 @@
 # Changelog
+# 6.2.0
+## Added
+* Add windows support to build scripts vai `npm run start-windows` command [#afb5bff](https://github.com/wix/react-native-navigation/commit/afb5bffb49b9e8c670419aaacedf10f65cf82fd2) by [mayconmesquita](https://github.com/mayconmesquita)
+
+## Fixed
+### iOS
+* Fix largeTitle background color on iOS 13 no being applied [#979cb6e](https://github.com/wix/react-native-navigation/commit/979cb6e08f80bd0b6b8e9286eb21d3c255c88312) by [yogevbd](https://github.com/yogevbd)
+* Fix bottomTabs attach mode not working when BottomTabs are inside SideMenu [#7d6029f](https://github.com/wix/react-native-navigation/commit/7d6029f06bd3b4f4336d0d50a1621a5291e43fa7) by [yogevbd](https://github.com/yogevbd)
+* Fix crash on iOS 10 when displaying stack layouts [#e923b8c](https://github.com/wix/react-native-navigation/commit/e923b8c02204e31d1ce6781dab11ebeabc2af218) [RomualdPercereau](https://github.com/RomualdPercereau)
+
+# 6.1.2
+## Fixed
+### iOS
+* Fix modal presentation style not being applied on some layouts [#931167e](https://github.com/wix/react-native-navigation/commit/931167e039000502d4198244c450dacce3c39809) by [yogevbd](https://github.com/yogevbd)
+* Fix truncated bottomTab.text with semibold fontWeight [#b01629c](https://github.com/wix/react-native-navigation/commit/b01629c41da9197ee0737c937c02684c73dd9042) by [yogevbd](https://github.com/yogevbd)
+* Always drawBehind bottomTabs and topBar when translucent: true [#6edbbf5](https://github.com/wix/react-native-navigation/commit/6edbbf512f2230ee0bceaf73c7895bca90475700) by [yogevbd](https://github.com/yogevbd)
+* drawBehind when largeTitle is visible - fixes black large title [#6edbbf5](https://github.com/wix/react-native-navigation/commit/6edbbf512f2230ee0bceaf73c7895bca90475700) by [yogevbd](https://github.com/yogevbd)
+
 # 6.1.1
 ## Fixed
 ### iOS
