@@ -3,6 +3,10 @@ dist
 package-lock.json
 .history/
 
+# Docusaurus
+.docusaurus
+.cache-loader
+
 ############
 # Node
 ############
