@@ -47,6 +47,7 @@ module.exports = {
         },
         'options-statusBar',
         'options-layout',
+        'options-navigationBar',
         'options-overlay',
         'options-sideMenu',
         'options-sideMenuSide',
