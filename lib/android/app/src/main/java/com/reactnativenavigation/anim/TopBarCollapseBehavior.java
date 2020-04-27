@@ -54,7 +54,9 @@ public class TopBarCollapseBehavior implements ScrollEventListener.OnScrollListe
 
     @Override
     public void onShow() {
-        animator.show(topBar.getTranslationY());
+        if (topBar.getVisibility() == View.GONE) {
+            animator.show(topBar.getTranslationY());
+        }
     }
 
     @Override
